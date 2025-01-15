@@ -1,0 +1,3 @@
+smtp.domaine.com
+expediteur@domaine.fr
+Mot_De_Passe_Mail:D
