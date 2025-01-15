@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def mes_infos_mail(file: str = "input/TOUCHE_PAS_CA_mail.txt") -> tuple[str]:
+def mes_infos_mail(file: str = "input/ID_mail.txt") -> tuple[str]:
     with open(file, 'r') as f:
         infos = f.readlines()
     
