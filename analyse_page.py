@@ -10,7 +10,7 @@ def mes_infos_univ(file: str = "input/ID_univ.txt") -> tuple[str]:
         infos = f.readlines()
     
     #      id           , mdp
-    return infos[0][:-1], infos[1]
+    return infos[0][:-1], infos[1][:-1]
 
 
 def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.univ-angers.fr/cas/login?service=https%3A%2F%2Fvosnotes.univ-angers.fr%2Fvosnotes%2F", site_notes = "https://vosnotes.univ-angers.fr/vosnotes/", fichier: str = "output/Notes.html") -> bool:
@@ -121,6 +121,13 @@ def objectifs_notes(objectifs: list[str], soup) -> list[str]:
 
 
 def proto_CEST_IMPERDABE_PUTAIN():
+    id_univ, mdp_univ = mes_infos_univ()
+    
+    if(connect_et_sauve_notes_html(id_univ, mdp_univ)):
+        print("page enregistré !! :D")
+    else:
+        print("page non enregistrée >:(")
+    
     objectifs = Init_objectifs()
     
     obj_notes = objectifs_notes(objectifs, extrait_soup())
@@ -130,6 +137,7 @@ def proto_CEST_IMPERDABE_PUTAIN():
     
     if not(obj_notes == []):
         actualise_matieres_et_objectifs_atteints(obj_notes, objectifs)
+
 
 #se connecte, sauvegarde la page, la lis, regarde les matières notées, actualise les matières notées / non notées
 def Analyse_plus_resultats() -> list[str]:
