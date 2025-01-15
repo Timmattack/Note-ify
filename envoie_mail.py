@@ -13,7 +13,7 @@ def mes_infos_mail(file: str = "input/ID_mail.txt") -> tuple[str]:
 
 def Init_destinataires(file: str = "input/destinataires.txt") -> list[str]:
     with open(file, 'r') as f:
-        destinataires = f.writelines()
+        destinataires = f.readlines()
     
     return [m[:-1] for m in destinataires]
     
