@@ -13,7 +13,7 @@ def mes_infos_univ(file: str = "input/CA_NON_PLUS_univ.txt") -> tuple[str]:
     return infos[0][:-1], infos[1]
 
 
-def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.univ-angers.fr/cas/login?service=https%3A%2F%2Fvosnotes.univ-angers.fr%2Fvosnotes%2F", site_notes = "https://vosnotes.univ-angers.fr/vosnotes/", fichier: str = "Notes") -> bool:
+def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.univ-angers.fr/cas/login?service=https%3A%2F%2Fvosnotes.univ-angers.fr%2Fvosnotes%2F", site_notes = "https://vosnotes.univ-angers.fr/vosnotes/", fichier: str = "output/Notes.html") -> bool:
     
     with requests.Session() as session:
         
@@ -46,7 +46,7 @@ def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.u
                 return False
     
             page_notes = session.get(site_notes)
-            with open(fichier+".html", 'w', encoding='utf-8') as f:
+            with open(fichier, 'w', encoding='utf-8') as f:
                 f.write(page_notes.text)
             
             return True
@@ -88,7 +88,7 @@ def actualise_matieres_et_objectifs_atteints(obj_notes: list[str], objectifs: li
     
 
 
-def extrait_soup(fichier: str = "Notes.html"): # renvoie la soupe
+def extrait_soup(fichier: str = "output/Notes.html"): # renvoie la soupe
     with open(fichier, 'r') as f:
         page = f.read()
     
