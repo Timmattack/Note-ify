@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 
-def mes_infos_univ(file: str = "input/CA_NON_PLUS_univ.txt") -> tuple[str]:
+def mes_infos_univ(file: str = "input/ID_univ.txt") -> tuple[str]:
     with open(file, 'r') as f:
         infos = f.readlines()
     
