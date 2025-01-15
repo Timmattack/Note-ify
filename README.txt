@@ -54,8 +54,11 @@ Il y est écrit quand le programme a été lancé
 
 
 --- objectifs_atteints.txt ---
-Il y est écrit quelles matières ont été notées
+Il y est écrit quelles matières ont été notées, et quand
 
+
+--- Notes.html ---
+c'est la page des notes qui est téléchargée, puis analysée (vous pouvez la visualiser)
 
 --------------------------------------------------------------------------------------
 
