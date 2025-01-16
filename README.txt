@@ -1,5 +1,9 @@
 Bonjoir,
 
+ce programme permet donc de :
+  envoyer un mail (aux addresse précisée dans destinataires.txt) si une matière "objectif" a été notée sur le site 
+
+
 #################
 ## Dépendances ##
 #################
@@ -74,10 +78,63 @@ c'est la page des notes qui est téléchargée, puis analysée (vous pouvez la v
 --------------------------------------------------------------------------------------
 
 
-Le script principal Note-ify peut être éxécuté via le "task scheduler" de windows !
+Le script principal Note-ify peut être éxécuté via le "task scheduler" de windows.
+Pour l'éxécuter en silence, on utilise pythonw (et non pas 'simplement' python) !
 
-Pour l'éxécuter en silence, on utilise pythonw !
+########################################
+## Set Up le "task scheduler" windows ##
+########################################
+
+- Cherchez le programme "task scheduler", en français "Planificateur de tâches"
+à gauche, vous voyez des dossiers, vous pouvez en créer un autre, du genre "script-Notify"
+
+- Clic droit sur ce dossier, puis "Créer un tâche" (pas "de base", sinon ils vous manquera quelques options intéressantes)
+
+- Choisissez un nom, puis une description (pour vous rappeler à quoi sert cette tâche plus tard :p)
 
 
 
-un mail est envoyé (aux addresse précisée dans destinataires.txt) si une matière "objectif" a été notée sur le site 
+- Cochez "Éxécuter avec les autorisations maximales"
+- Cochez "Masquer", et configurez pour "Windows 10"
+
+Passez à l'onglet "Déclencheur"
+-------------------------------
+- Cliquez sur "Nouveau"
+- Laissez "Lancer la tâche à l'heure programmée"
+
+- Pour ses paramètres:
+  - Cochez une fois par jour
+  - Vous démarrez le jour que vous voulez, ça répètera tout les jours...
+  - j'ai personnellement choisi 8h30
+
+- Pour ses paramètres avancés:
+  - Cochez "Répéter la tâche toutes les :"
+  - J'ai choisi 20 minutes, pour cela sélectionnez un temps en minute et réécrivez "20 minutes" à la place
+  - J'ai choisi une durée de "10 heures"
+
+Ces paramètres auront pour effet de, une fois par jour, lancer une boucle qui lancera la commande toute les 20 minutes pendant 10 heures
+  - Vous pouvez indiquez une date d'expiration, je le recommande, parce que sinon vous allez clairement oublier de la désactiver :)
+  - Cochez "Activée"
+  - Validez ce paramètre en cliquant dur "Ok"
+
+Passez à l'onglet "Actions"
+---------------------------
+- Cliquez sur "Nouveau"
+- Laissez l' "Action" "Démarrer un programme"
+
+- Pour ses Paramètres:
+  - Vous chosirez l'exécutable "pythonw.exe", vérifiez à bien spécifier son chemin, n'hésitez pas à utiliser l'option "Parcourir"
+Ensuite, comme vous le souhaitez :
+  - Soit vous spécifiez le chemin entier vers le script "Note-ify.py" dans "Ajouter des arguments"
+  - Soit vous spécifiez dans "Ajouter des arguments" uniquement "./Note-ify.py", et dans "Commencer dans", vous mettez le dossier dans lequel se situe le script de Note-ify
+
+Validez avec "Ok"
+Re validez avec "OK"
+
+Votre super tâche est Set up :D
+
+maintenant, je vous propose une super vidéo pour mettre votre PC en AFk :D
+https://youtu.be/1SLr62VBBjw?si=kmERBScFMRG3nip5
+
+
+
