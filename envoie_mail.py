@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def mes_infos_mail(file: str = "input/ID_mail.txt") -> tuple[str]:
+def mes_infos_mail(file: str = "input/TOUCHE_PAS_CA_mail.txt") -> tuple[str]:
     with open(file, 'r') as f:
         infos = f.readlines()
     
@@ -19,12 +19,15 @@ def Init_destinataires(file: str = "input/destinataires.txt") -> list[str]:
     
 
 
-def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinataires: list[str], sujet: str, msg: str) -> int:
+def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinataires: list[str], sujet: str, titre: str, msg: str) -> int:
     
     message = MIMEMultipart()
     message["From"] = expediteur
-    message["To"] = ", ".join(destinataires)
     message["Subject"] = sujet
+    
+    html = "<h2>"+ titre +"</h2><p><a href=\"https://vosnotes.univ-angers.fr/vosnotes/\">Vos Notes</a></p>"
+    
+    message.attach(MIMEText(html, "html"))
     message.attach(MIMEText(msg, "plain"))
     
     try:
@@ -32,7 +35,13 @@ def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinatai
         with smtplib.SMTP(smtp, 587) as server:
             server.starttls()  # Sécurise la connexion
             server.login(expediteur, mdp)  # Authentification
-            server.sendmail(expediteur, destinataires, message.as_string())
+            
+            # On envoie un mail par destinataire
+            # Chaque personne se voit unique receveur du mail (et ne voit pas les addresses des autres)
+            for dest in destinataires:
+                message["To"] = dest
+                server.sendmail(expediteur, dest, message.as_string())
+            
         print("E-mail envoyé avec succès !")
         return 0
     except Exception as e:
@@ -46,9 +55,9 @@ def envoie_notif(msg: str, destinataires: list[str]):
     
     sujet = "Des Notes !!!"
     
-    prefix = "Bon bah aujourdhui, IL Y A DES NOTES !!\n\n"
+    titre = "Bon bah aujourdhui, IL Y A DES NOTES !!"
     
-    envoie_mail_par_univ_angers(smtp, expediteur, mdp, destinataires, sujet, prefix+msg)
+    envoie_mail_par_univ_angers(smtp, expediteur, mdp, destinataires, sujet, titre, msg)
 
 
 
