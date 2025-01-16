@@ -54,7 +54,7 @@ def envoie_notif(msg: str, destinataires: list[str]):
 
 def main():
     
-    destinataires = Init_destinataires()
+    destinataires = Init_destinataires("input/test_mail.txt")
     
     msg = "Bip Boup test 1 2\nwow le saut de ligne de fou"
     
