@@ -23,6 +23,7 @@ def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinatai
     
     message = MIMEMultipart()
     message["From"] = expediteur
+    message["To"] = ", ".join(destinataires)
     message["Subject"] = sujet
     
     html = "<h2>"+ titre +"</h2><p><a href=\"https://vosnotes.univ-angers.fr/vosnotes/\">Vos Notes</a></p>"
@@ -35,12 +36,7 @@ def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinatai
         with smtplib.SMTP(smtp, 587) as server:
             server.starttls()  # Sécurise la connexion
             server.login(expediteur, mdp)  # Authentification
-            
-            # On envoie un mail par destinataire
-            # Chaque personne se voit unique receveur du mail (et ne voit pas les addresses des autres)
-            for dest in destinataires:
-                message["To"] = dest
-                server.sendmail(expediteur, dest, message.as_string())
+            server.sendmail(expediteur, destinataires, message.as_string())
             
         print("E-mail envoyé avec succès !")
         return 0
