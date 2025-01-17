@@ -26,7 +26,7 @@ def envoie_mail_par_univ_angers(smtp: str, expediteur: str, mdp: str, destinatai
     message["To"] = ", ".join(destinataires)
     message["Subject"] = sujet
     
-    html = "<h2>"+ titre +"</h2><p><a href=\"https://vosnotes.univ-angers.fr/vosnotes/\">Vos Notes</a></p>"
+    html = "<h2>"+ titre +"</h2><p><a href=\"https://dossetud.univ-angers.fr/dossetud/etud/ficheEtud\">Vos Notes</a></p>"
     
     message.attach(MIMEText(html, "html"))
     message.attach(MIMEText(msg, "plain"))
