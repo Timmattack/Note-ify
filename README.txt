@@ -39,7 +39,7 @@ Les e-mails des destinataires, un par ligne
 --- ID_mail.txt --- 
 La première ligne contient le protocole SMTP, 
 en général, c'est smtp.après_arobase
-si mon mail est mon_nom@mail.com, alors le protocole sera smtp.gmail.com
+si mon mail est mon_nom@gmail.com, alors le protocole sera smtp.gmail.com
 si c'est mon_mail@domaine.fr, alors le protocole sera smtp.domaine.fr
 
 La deuxième ligne contient votre e-mail ou un e-mail vous appartenant
