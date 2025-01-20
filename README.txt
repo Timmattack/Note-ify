@@ -135,6 +135,7 @@ Votre super tâche est Set up :D
 
 maintenant, je vous propose une super vidéo pour mettre votre PC en AFk :D
 https://youtu.be/1SLr62VBBjw?si=kmERBScFMRG3nip5
-
+Ou celle là :D
+https://youtu.be/_Den0fw2pQg?feature=shared
 
 
