@@ -4,18 +4,18 @@ from email.mime.multipart import MIMEMultipart
 
 
 def mes_infos_mail(file: str = "input/ID_mail.txt") -> tuple[str]:
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         infos = f.readlines()
     
-    #      smtp         , email        , mdp
-    return infos[0][:-1], infos[1][:-1], infos[2][:-1]
+    #      smtp            , email           , mdp
+    return infos[0].strip(), infos[1].strip(), infos[2].strip()
 
 
 def Init_destinataires(file: str = "input/destinataires.txt") -> list[str]:
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         destinataires = f.readlines()
     
-    return [m[:-1] for m in destinataires]
+    return [m.strip() for m in destinataires if m.strip()]
     
 
 
