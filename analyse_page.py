@@ -6,11 +6,11 @@ from datetime import datetime
 
 
 def mes_infos_univ(file: str = "input/ID_univ.txt") -> tuple[str]:
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         infos = f.readlines()
     
-    #      id           , mdp
-    return infos[0][:-1], infos[1][:-1]
+    #      id              , mdp
+    return infos[0].strip(), infos[1].strip()
 
 
 def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.univ-angers.fr/cas/login?service=https%3A%2F%2Fvosnotes.univ-angers.fr%2Fvosnotes%2F", site_notes = "https://vosnotes.univ-angers.fr/vosnotes/", fichier: str = "output/Notes.html") -> bool:
@@ -53,11 +53,11 @@ def connect_et_sauve_notes_html(id: str, mdp: str, site_login = "https://casv6.u
 
 
 def Init_objectifs(fichier: str = "input/matieres.txt"):
-    with open(fichier, 'r') as f:
+    with open(fichier, 'r', encoding="utf-8") as f:
         matieres = f.readlines()
     
     # les lignes finissent par \n, on retire alors ce dernier caractère
-    return [m[:-1] for m in matieres]
+    return [m.strip() for m in matieres if m.strip()]
 
 
 def change_objectifs(objectifs: list[str], fichier: str = "input/matieres.txt"):
@@ -89,7 +89,7 @@ def actualise_matieres_et_objectifs_atteints(obj_notes: list[str], objectifs: li
 
 
 def extrait_soup(fichier: str = "output/Notes.html"): # renvoie la soupe
-    with open(fichier, 'r') as f:
+    with open(fichier, 'r', encoding='utf-8') as f:
         page = f.read()
     
     soup = BeautifulSoup(page, 'html.parser')
